@@ -1,19 +1,23 @@
 package pl.esmanowiczpawel.zadanie1.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Item {
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Item implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID_GUID;
     private String Name;
 
-    // for hibernate
     public Item() {
     }
 
@@ -36,6 +40,4 @@ public class Item {
     public void setName(String name) {
         Name = name;
     }
-
-
 }
