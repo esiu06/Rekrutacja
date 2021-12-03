@@ -1,28 +1,26 @@
 package pl.esmanowiczpawel.zadanie1.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 import pl.esmanowiczpawel.zadanie1.model.Item;
-import pl.esmanowiczpawel.zadanie1.repository.ItemRepository;
+import pl.esmanowiczpawel.zadanie1.service.ItemService;
 
 @RestController
 @RequestMapping("/item")
 public class ItemController {
 
-    @Autowired
-    private ItemRepository itemRepository;
+    private ItemService itemService;
 
-    public ItemController(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
     }
-
     @GetMapping
     public Iterable<Item> GetItem(){
-        return  itemRepository.findAll();
+        return  itemService.findAll();
     }
-
     @PostMapping
     public Item AddItem(@RequestBody Item item){
-        return itemRepository.save(item);
+        return itemService.save(item);
     }
 }
+
