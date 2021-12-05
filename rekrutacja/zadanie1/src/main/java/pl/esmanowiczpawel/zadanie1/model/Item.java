@@ -14,7 +14,7 @@ public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_GUID;
     private String Name;
 
@@ -39,5 +39,13 @@ public class Item implements Serializable {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "ID_GUID=" + ID_GUID +
+                ", Name='" + Name + '\'' +
+                '}';
     }
 }
