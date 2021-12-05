@@ -1,6 +1,7 @@
 package pl.esmanowiczpawel.zadanie1.service;
 
 import org.springframework.stereotype.Service;
+import pl.esmanowiczpawel.zadanie1.dto.ItemDto;
 import pl.esmanowiczpawel.zadanie1.model.Item;
 import pl.esmanowiczpawel.zadanie1.repository.ItemRepository;
 
@@ -17,7 +18,11 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item save(Item item) {
+    public Item save(ItemDto itemDto) {
+        Item item = new Item();
+        item.setID_GUID(itemDto.getID_GUID());
+        item.setName(itemDto.getName());
+
         return itemRepository.save(item);
     }
 }
